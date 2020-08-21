@@ -217,10 +217,10 @@
 | 参数名称         | 说明                             |    类型 |  schema |
 | ------------ | -------------------|-------|----------- |
 | error     |错误消息      |    string   |       |
-            | errorCode     |错误码      |    string   |       |
-            | result     |返回结果      |    PageResult«ProjectSelectVO»   |   PageResult«ProjectSelectVO»    |
-            | success     |是否成功      |    boolean   |       |
-            | timestamp     |响应时间      |    integer(int64)   |   integer(int64)    |
+| errorCode     |错误码      |    string   |       |
+| result     |返回结果      |    PageResult«ProjectSelectVO»   |   PageResult«ProjectSelectVO»    |
+| success     |是否成功      |    boolean   |       |
+| timestamp     |响应时间      |    integer(int64)   |   integer(int64)    |
             
 
 
