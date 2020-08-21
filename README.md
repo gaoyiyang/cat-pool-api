@@ -22,7 +22,6 @@
 
 | 参数名称         | 说明     |     参数类型 |  是否必须      |  类型   |  schema  |
 | ------------ | -------------------------------- |-----------|--------|----|--- |
-| access_token         |      请求的token参数   |     query        |       false      | string   |      |
 | password         |      登录密码   |     query        |       true      | string   |      |
 | username         |      用户名   |     query        |       true      | string   |      |
             
@@ -106,10 +105,8 @@
 
 | 参数名称         | 说明     |     参数类型 |  是否必须      |  类型   |  schema  |
 | ------------ | -------------------------------- |-----------|--------|----|--- |
-| access_token         |      请求的token参数   |     query        |       false      | string   |      |
 | refreshToken         |      刷新token   |     query        |       true      | string   |      |
             
-
 
 
 
@@ -193,11 +190,11 @@
 
 | 参数名称         | 说明     |     参数类型 |  是否必须      |  类型   |  schema  |
 | ------------ | -------------------------------- |-----------|--------|----|--- |
-| access_token         |      请求的token参数   |     query        |       false      | string   |      |
-            | keyword         |      查询关键字   |     query        |       false      | string   |      |
-            | pageNumber         |      当前页，从1开始   |     query        |       false      | integer   |      |
-            | pageSize         |      每页条数   |     query        |       false      | integer   |      |
-            
+| access_token         |      请求的token参数   |     query        |       true      | string   |      |
+| keyword         |      查询关键字   |     query        |       false      | string   |      |
+| pageNumber         |      当前页，从1开始   |     query        |       false      | integer   |      |
+| pageSize         |      每页条数   |     query        |       false      | integer   |      |
+
 
 
 
@@ -317,7 +314,7 @@
 
 | 参数名称         | 说明     |     参数类型 |  是否必须      |  类型   |  schema  |
 | ------------ | -------------------------------- |-----------|--------|----|--- |
-| access_token         |      请求的token参数   |     query        |       false      | string   |      |
+| access_token         |      请求的token参数   |     query        |       true      | string   |      |
 | merchantName         |      卡商名   |     query        |       false      | string   |      |
 | pageNumber         |      当前页，从1开始   |     query        |       false      | integer   |      |
 | pageSize         |      每页条数   |     query        |       false      | integer   |      |
@@ -430,7 +427,7 @@
 
 | 参数名称         | 说明     |     参数类型 |  是否必须      |  类型   |  schema  |
 | ------------ | -------------------------------- |-----------|--------|----|--- |
-| access_token         |      请求的token参数   |     query        |       false      | string   |      |
+| access_token         |      请求的token参数   |     query        |       true      | string   |      |
             
 
 
@@ -513,7 +510,7 @@
 
 | 参数名称         | 说明     |     参数类型 |  是否必须      |  类型   |  schema  |
 | ------------ | -------------------------------- |-----------|--------|----|--- |
-| access_token         |      请求的token参数   |     query        |       false      | string   |      |
+| access_token         |      请求的token参数   |     query        |       true      | string   |      |
 | area         |      地区   |     query        |       false      | string   |      |
 | merchantUid         |      卡商id   |     query        |       false      | integer   |      |
 | num         |      获取数量   |     query        |       true      | string   |      |
@@ -588,6 +585,75 @@
 	"timestamp": 0
 }
 ```
+
+---
+
+## 释放当前获取的全部手机号
+
+**接口地址** `/user/codeWeb/unlockPhone`
+
+
+**请求方式** `GET`
+
+
+**consumes** ``
+
+
+**produces** `["*/*"]`
+
+
+**接口描述** ``
+
+**请求参数**
+
+| 参数名称         | 说明     |     参数类型 |  是否必须      |  类型   |  schema  |
+| ------------ | -------------------------------- |-----------|--------|----|--- |
+| access_token         |      请求的token参数   |     query        |       true      | string   |      |
+            
+
+
+
+
+
+**响应状态**
+
+| 状态码         | 说明                             |    schema                         |
+| ------------ | -------------------------------- |---------------------- |
+| 200         | OK                        |HttpResult                          |
+| 401         | Unauthorized                        |                          |
+| 403         | Forbidden                        |                          |
+| 404         | Not Found                        |                          |
+
+
+
+
+**响应参数**
+
+| 参数名称         | 说明                             |    类型 |  schema |
+| ------------ | -------------------|-------|----------- |
+| error     |错误消息      |    string   |       |
+| errorCode     |错误码      |    string   |       |
+| result     |返回结果      |    object   |       |
+| success     |是否成功      |    boolean   |       |
+| timestamp     |响应时间      |    integer(int64)   |   integer(int64)    |
+            
+
+
+
+
+**响应示例**
+
+
+```json
+{
+	"error": "",
+	"errorCode": "",
+	"result": {},
+	"success": true,
+	"timestamp": 0
+}
+```
+
 
 
 
