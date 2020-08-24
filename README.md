@@ -172,6 +172,94 @@
 
 ---
 
+## 获取当前用户信息
+
+**接口地址** `/user/userWeb/getCurrentUser`
+
+
+**请求方式** `GET`
+
+
+**请求参数**
+
+| 参数名称         | 说明     |     参数类型 |  是否必须      |  类型   |  schema  |
+| ------------ | -------------------------------- |-----------|--------|----|--- |
+| access_token         |      请求的token参数   |     query        |       false      | string   |      |
+            
+
+
+
+
+**响应状态**
+
+| 状态码         | 说明                             |    schema                         |
+| ------------ | -------------------------------- |---------------------- |
+| 200         | OK                        |HttpResult«用户信息»                          |
+| 401         | Unauthorized                        |                          |
+| 403         | Forbidden                        |                          |
+| 404         | Not Found                        |                          |
+
+
+
+
+**响应参数**
+
+| 参数名称         | 说明                             |    类型 |  schema |
+| ------------ | -------------------|-------|----------- |
+| error     |错误消息      |    string   |       |
+| errorCode     |错误码      |    string   |       |
+| result     |返回结果      |    用户信息   |   用户信息    |
+| success     |是否成功      |    boolean   |       |
+| timestamp     |响应时间      |    integer(int64)   |   integer(int64)    |
+            
+
+
+
+**schema属性说明**
+  
+**用户信息**
+
+| 属性名称         |  说明          |   类型  |  schema |
+| ------------ | ------------------|--------|----------- |
+| aliPayAccount         |     支付宝账号      |  string   |      |
+| aliPayRealName         |     支付宝真实姓名      |  string   |      |
+| createTime         |     创建时间      |  string(date-time)   |      |
+| enable         |     是否可用      |  boolean   |      |
+| id         |           |  integer(int64)   |      |
+| phone         |     手机号      |  string   |      |
+| qq         |     qq号      |  string   |      |
+| updateTime         |     更新时间      |  string(date-time)   |      |
+| username         |     用户名      |  string   |      |
+            
+
+
+
+
+**响应示例**
+
+
+```json
+{
+	"error": "",
+	"errorCode": "",
+	"result": {
+		"aliPayAccount": "",
+		"aliPayRealName": "",
+		"createTime": "",
+		"enable": true,
+		"id": 0,
+		"phone": "",
+		"qq": "",
+		"updateTime": "",
+		"username": ""
+	},
+	"success": true,
+	"timestamp": 0
+}
+```
+
+---
+
 ## 获取项目选项列表
 
 **接口地址** `/user/codeWeb/getProjectSelects`
@@ -654,7 +742,48 @@
 }
 ```
 
+---
 
+## 通过WebSocket接收短信
+
+### 连接地址
+
+测试环境：ws://219.153.49.186:10028
+
+### 连接方式
+
+ws://{ip}:{port}?id=${用户id}&access_token=${accessToken}
+
+### 说明
+
+连接成功后，需要间隔十分钟以内向服务端发送心跳，心跳格式：{"action":"PING"}，服务端响应心跳：{"action":"PING","response":"PONE"}
+
+### 接收短信
+
+如果当前用户获取到的号码收到指定项目的短信，则服务端会发送如下格式的数据包给客户端
+
+```json
+{
+	"action": "SMS",
+	"response": {
+		"content": "【淘宝网】您于2020年08月24日申请了手机号码注册，校验码是224679",
+		"downloadUrl": null,
+		"phone": "13594479413"
+	}
+}
+```
+
+#### 参数说明
+
+action：SMS-短信，SOUND-语音  
+
+response：响应参数  
+
+response.content：短信正文，如果是语音则为语音转换的文本   
+
+response.phone：收信号码   
+
+response.downloadUrl：如果时语音，这个参数才有值，值为语音文件的下载地址
 
 
 
